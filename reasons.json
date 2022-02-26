@@ -1,0 +1,60 @@
+{
+    "reasons": [ "sus_speech", "thats_homophobic", "deez_nuts", "bitches_joke", "cupcakke", "valorant_come", "gaslighting_joki", "acy_joke", "height_joke", "griffin_burns", "vc_sleeping" ],
+    "reason": {
+        "sus_speech": {
+            "title": "Entry in #sus-speech",
+            "value": 0.1,
+            "emoji": "<:Sus:947096324808007730>"
+        },
+        "thats_homophobic": {
+            "title": "\"You're/That's homophobic\"",
+            "value": 0.1,
+            "emoji": "<:poc_lgbt_middle_finger:947089634607919145>"
+        },
+        "deez_nuts": {
+            "title": "\"Deez nuts\" joke",
+            "value": 0.25,
+            "emoji": "<:thonk:947094204511842324>"
+        },
+        "bitches_joke": {
+            "title": "Any \"bitches\" joke",
+            "value": 0.25,
+            "emoji": "<a:Kokomi_FuckYou:947092817308708894>"
+        },
+        "cupcakke": {
+            "title": "Cupcakke Remix",
+            "value": 0.25,
+            "emoji": "<:thinksmirk:947095789828735107>"
+        },
+        "valorant_come": {
+            "title": "Sova/Viper \"Come\"",
+            "value": 0.25,
+            "emoji": "<:Sova_Pokerface:947089043399790592>"
+        },
+        "gaslighting_joki": {
+            "title": "Gaslighting Joki",
+            "value": 0.5,
+            "emoji": "<a:jokipat:947091916498026546>"
+        },
+        "acy_joke": {
+            "title": "Acy joke",
+            "value": 0.5,
+            "emoji": "<:pepeNoSign:947094523870343198>"
+        },
+        "height_joke": {
+            "title": "Rvk height joke",
+            "value": 0.5,
+            "emoji": "<a:KEKWLaugh:947093507682742272>"
+        },
+        "griffin_burns": {
+            "title": "Getting Griffin Burn'd",
+            "value": 0.5,
+            "emoji": "<:childedisgusted:947093745562705930>"
+        },
+        "vc_sleeping": {
+            "title": "Sleeping in VC",
+            "value": 1,
+            "emoji": "<:stanleySleeper:947094037297504346>"
+        }
+    }
+}
