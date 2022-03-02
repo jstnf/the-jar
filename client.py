@@ -1,4 +1,5 @@
 # client.py
+import time
 import os
 from dotenv import load_dotenv
 import json
@@ -32,12 +33,13 @@ class ReportView(View):
         for reason in data['reasons']:
             entry = data['reason'][reason]
             if (entry['active']): # Only import active jar reasons
-                self.add_item(ReportButton(author, entry['title'], entry['value'], entry['emoji'], victim))
+                self.add_item(ReportButton(author, reason, entry['title'], entry['value'], entry['emoji'], victim))
 
 class ReportButton(Button):
-    def __init__(self, author: discord.Member, title: str, value: float, emoji, victim: discord.Member):
+    def __init__(self, author: discord.Member, id: str, title: str, value: float, emoji, victim: discord.Member):
         super().__init__(label=title, style=self.style(value), emoji=emoji)
         self.author = author
+        self.id = id
         self.title = title
         self.value = value
         self.emoji = emoji
@@ -54,14 +56,60 @@ class ReportButton(Button):
             return discord.ButtonStyle.danger
 
     async def callback(self, interaction):
+        # Record the violation to CSV file
+        record_violation(self.victim, self.id)
+        violations = tally_violations()
+
+        # Calculate the jar and user totals
+        total = get_money_total(violations)
+        user_total = get_money_user_total(violations, self.victim)
+        percentage = '%.1f' % (user_total / total * 100)
+
         embed = Embed(title='Thanks!', description='The Jar grows by the day.', colour=Colour.brand_red())
         embed.set_author(name=self.author.name, icon_url=self.author.avatar.url)
         embed.set_thumbnail(url='https://raw.githubusercontent.com/jstnf/the-jar/main/assets/pikafacepalm.png')
         embed.add_field(name='THE ACCUSED', value=self.victim.mention, inline=False)
         embed.add_field(name='THE CRIME', value=f'{self.emoji} **{self.title}**', inline=True)
         embed.add_field(name='Added Amount', value=f'{formatCurrency(self.value)}', inline=True)
-        embed.add_field(name='Total Amount', value=f'$WIP <:TheJar:947107045188976681>', inline=False)
+        embed.add_field(name=f'{self.victim.name}\'s Total', value=f'{formatCurrency(user_total)} `({percentage}% of total)`', inline=True)
+        embed.add_field(name='Jar Total', value=f'{formatCurrency(total)} <:TheJar:947107045188976681>', inline=True)
+
         await interaction.response.edit_message(embed=embed, view=None)
+
+def record_violation(victim: discord.Member, reason_id: str):
+    current_time = round(time.time() * 1000)
+    with open('data.csv', 'a') as data_file:
+        data_file.write(f'{current_time},{victim.id},{reason_id}\n')
+
+def tally_violations():
+    violations = []
+    with open('data.csv', 'r') as data_file:
+        lines = data_file.readlines()
+        for line in lines:
+            parts = line.split(',')
+            if len(parts) != 3:
+                continue
+            violations.append(Violation(parts[0], parts[1], parts[2][:-1]))
+    return violations
+
+def get_money_total(violations):
+    total = 0.0
+    for v in violations:
+        total += float(data['reason'][v.reason_id]['value'])
+    return total
+
+def get_money_user_total(violations, victim: discord.Member):
+    total = 0.0
+    for v in violations:
+        if v.victim_id == f'{victim.id}':
+            total += float(data['reason'][v.reason_id]['value'])
+    return total
+
+class Violation:
+    def __init__(self, time: str, victim_id: str, reason_id: str):
+        self.time = time
+        self.victim_id = victim_id
+        self.reason_id = reason_id
 
 @bot.slash_command(name='getthejar', guild_ids=[GUILD_ID, '947088843637661696'], description='I can\'t believe you\'ve done this...')
 async def _getthejar(
