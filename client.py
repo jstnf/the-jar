@@ -24,7 +24,7 @@ bot = discord.Bot()
 async def on_ready():
     print("The Jar is ready! :D")
 
-def formatCurrency(value: float):
+def format_currency(value: float):
     return '${:,.2f}'.format(value)
 
 class ReportView(View):
@@ -58,7 +58,7 @@ class ReportButton(Button):
     async def callback(self, interaction):
         # Record the violation to CSV file
         record_violation(self.victim, self.id)
-        violations = tally_violations()
+        violations = get_violations_list()
 
         # Calculate the jar and user totals
         total = get_money_total(violations)
@@ -70,18 +70,24 @@ class ReportButton(Button):
         embed.set_thumbnail(url='https://raw.githubusercontent.com/jstnf/the-jar/main/assets/pikafacepalm.png')
         embed.add_field(name='THE ACCUSED', value=self.victim.mention, inline=False)
         embed.add_field(name='THE CRIME', value=f'{self.emoji} **{self.title}**', inline=True)
-        embed.add_field(name='Added Amount', value=f'{formatCurrency(self.value)}', inline=True)
-        embed.add_field(name=f'{self.victim.name}\'s Total', value=f'{formatCurrency(user_total)} `({percentage}% of total)`', inline=True)
-        embed.add_field(name='Jar Total', value=f'{formatCurrency(total)} <:TheJar:947107045188976681>', inline=True)
+        embed.add_field(name='Added Amount', value=f'{format_currency(self.value)}', inline=True)
+        embed.add_field(name=f'{self.victim.name}\'s Total', value=f'{format_currency(user_total)} `({percentage}% of total)`', inline=True)
+        embed.add_field(name='Jar Total', value=f'{format_currency(total)} <:TheJar:947107045188976681>', inline=True)
 
         await interaction.response.edit_message(embed=embed, view=None)
+
+class Violation:
+    def __init__(self, time: str, victim_id: str, reason_id: str):
+        self.time = time
+        self.victim_id = victim_id
+        self.reason_id = reason_id
 
 def record_violation(victim: discord.Member, reason_id: str):
     current_time = round(time.time() * 1000)
     with open('data.csv', 'a') as data_file:
         data_file.write(f'{current_time},{victim.id},{reason_id}\n')
 
-def tally_violations():
+def get_violations_list():
     violations = []
     with open('data.csv', 'r') as data_file:
         lines = data_file.readlines()
@@ -105,11 +111,37 @@ def get_money_user_total(violations, victim: discord.Member):
             total += float(data['reason'][v.reason_id]['value'])
     return total
 
-class Violation:
-    def __init__(self, time: str, victim_id: str, reason_id: str):
-        self.time = time
-        self.victim_id = victim_id
-        self.reason_id = reason_id
+class LeaderboardEntry(object):
+    def __init__(self, id: str, amount: float):
+        self.id = id
+        self.amount = amount
+    def __eq__(self, other):
+        return self.amount == other.amount
+    def __ne__(self, other):
+        return self.amount != other.amount
+    def __lt__(self, other):
+        return self.amount < other.amount
+    def __gt__(self, other):
+        return self.amount > other.amount
+    def __le__(self, other):
+        return self.amount <= other.amount
+    def __ge__(self, other):
+        return self.amount >= other.amount
+
+def get_leaderboard(violations):
+    entries = []
+    for v in violations:
+        found = False
+        for ent in entries:
+            if ent.id == v.victim_id:
+                ent.amount += data['reason'][v.reason_id]['value']
+                found = True
+                break
+        if not found:
+            entries.append(LeaderboardEntry(v.victim_id, float(data['reason'][v.reason_id]['value'])))
+    entries.sort()
+    return entries
+
 
 @bot.slash_command(name='getthejar', guild_ids=[GUILD_ID, '947088843637661696'], description='I can\'t believe you\'ve done this...')
 async def _getthejar(
@@ -122,5 +154,29 @@ async def _getthejar(
     embed.set_thumbnail(url='https://raw.githubusercontent.com/jstnf/the-jar/main/assets/pikafacepalm.png')
     embed.add_field(name='THE ACCUSED', value=victim.mention)
     await ctx.respond(embed=embed, view=report_view)
+
+@bot.slash_command(name='jarleaderboard', guild_ids=[GUILD_ID, '947088843637661696'], description='View the top contributors to The Jar!')
+async def _jarleaderboard(
+    ctx: discord.ApplicationContext
+):
+    violations = get_violations_list()
+    total = get_money_total(violations)
+    users_content = ''
+    amounts_content = ''
+    entries = get_leaderboard(violations)
+    count = 1
+    for e in entries[::-1]:
+        percentage = '%.1f' % (e.amount / total * 100)
+        member = await ctx.guild.fetch_member(int(e.id))
+        users_content += f'**{count}.** {member.mention if member else None}\n'
+        amounts_content += f'**{format_currency(e.amount)}** ({percentage}%)\n'
+        count += 1
+
+    embed=Embed(title='The Jar Leaderboard', description='Here\'s the top contributors to The Jar! <:TheJar:947107045188976681>', colour=Colour.brand_red())
+    embed.set_thumbnail(url='https://raw.githubusercontent.com/jstnf/the-jar/main/assets/pikafacepalm.png')
+    embed.add_field(name='Rankings', value=users_content, inline=True)
+    embed.add_field(name='Amount', value=amounts_content, inline=True)
+    embed.add_field(name='Total Amount', value=f'**{format_currency(total)}**', inline=False)
+    await ctx.respond(embed=embed)
 
 bot.run(TOKEN)
