@@ -31,7 +31,8 @@ class ReportView(View):
         super().__init__()
         for reason in data['reasons']:
             entry = data['reason'][reason]
-            self.add_item(ReportButton(author, entry['title'], entry['value'], entry['emoji'], victim))
+            if (entry['active']): # Only import active jar reasons
+                self.add_item(ReportButton(author, entry['title'], entry['value'], entry['emoji'], victim))
 
 class ReportButton(Button):
     def __init__(self, author: discord.Member, title: str, value: float, emoji, victim: discord.Member):

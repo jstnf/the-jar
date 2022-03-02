@@ -4,57 +4,68 @@
         "sus_speech": {
             "title": "Entry in #sus-speech",
             "value": 0.1,
-            "emoji": "<:Sus:947096324808007730>"
+            "emoji": "<:Sus:947096324808007730>",
+            "active": true
         },
         "thats_homophobic": {
             "title": "\"You're/That's homophobic\"",
             "value": 0.1,
-            "emoji": "<:poc_lgbt_middle_finger:947089634607919145>"
+            "emoji": "<:poc_lgbt_middle_finger:947089634607919145>",
+            "active": true
         },
         "deez_nuts": {
             "title": "\"Deez nuts\" joke",
             "value": 0.25,
-            "emoji": "<:thonk:947094204511842324>"
+            "emoji": "<:thonk:947094204511842324>",
+            "active": true
         },
         "bitches_joke": {
             "title": "Any \"bitches\" joke",
             "value": 0.25,
-            "emoji": "<a:Kokomi_FuckYou:947092817308708894>"
+            "emoji": "<a:Kokomi_FuckYou:947092817308708894>",
+            "active": true
         },
         "cupcakke": {
             "title": "Cupcakke Remix",
             "value": 0.25,
-            "emoji": "<:thinksmirk:947095789828735107>"
+            "emoji": "<:thinksmirk:947095789828735107>",
+            "active": true
         },
         "valorant_come": {
             "title": "Sova/Viper \"Come\"",
             "value": 0.25,
-            "emoji": "<:Sova_Pokerface:947089043399790592>"
+            "emoji": "<:Sova_Pokerface:947089043399790592>",
+            "active": true
         },
         "gaslighting_joki": {
             "title": "Gaslighting Joki",
             "value": 0.5,
-            "emoji": "<a:jokipat:947091916498026546>"
+            "emoji": "<a:jokipat:947091916498026546>",
+            "active": true
         },
         "acy_joke": {
             "title": "Acy joke",
             "value": 0.5,
-            "emoji": "<:pepeNoSign:947094523870343198>"
+            "emoji": "<:pepeNoSign:947094523870343198>",
+            "active": true
         },
         "height_joke": {
             "title": "Rvk height joke",
             "value": 0.5,
-            "emoji": "<a:KEKWLaugh:947093507682742272>"
+            "emoji": "<a:KEKWLaugh:947093507682742272>",
+            "active": true
         },
         "griffin_burns": {
             "title": "Getting Griffin Burn'd",
             "value": 0.5,
-            "emoji": "<:childedisgusted:947093745562705930>"
+            "emoji": "<:childedisgusted:947093745562705930>",
+            "active": true
         },
         "vc_sleeping": {
             "title": "Sleeping in VC",
             "value": 1,
-            "emoji": "<:stanleySleeper:947094037297504346>"
+            "emoji": "<:stanleySleeper:947094037297504346>",
+            "active": true
         }
     }
 }
