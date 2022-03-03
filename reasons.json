@@ -1,5 +1,5 @@
 {
-    "reasons": [ "sus_speech", "thats_homophobic", "deez_nuts", "bitches_joke", "cupcakke", "valorant_come", "gaslighting_joki", "acy_joke", "height_joke", "griffin_burns", "vc_sleeping" ],
+    "reasons": [ "sus_speech", "thats_homophobic", "valorant_toxic", "deez_nuts", "bitches_joke", "cupcakke", "valorant_come", "emotional_damage", "gaslighting_joki", "acy_joke", "height_joke", "griffin_burns", "vc_sleeping", "genshin_50_50" ],
     "reason": {
         "sus_speech": {
             "title": "Entry in #sus-speech",
@@ -11,6 +11,12 @@
             "title": "\"You're/That's homophobic\"",
             "value": 0.1,
             "emoji": "<:poc_lgbt_middle_finger:947089634607919145>",
+            "active": true
+        },
+        "valorant_toxic": {
+            "title": "Toxic in Val (1/game)",
+            "value": 0.1,
+            "emoji": "<a:Peepo_toxic:948886225916407839>",
             "active": true
         },
         "deez_nuts": {
@@ -35,6 +41,12 @@
             "title": "Sova/Viper \"Come\"",
             "value": 0.25,
             "emoji": "<:Sova_Pokerface:947089043399790592>",
+            "active": true
+        },
+        "emotional_damage": {
+            "title": "EMOTIONAL DAMAGE",
+            "value": 0.25,
+            "emoji": "<a:Emotional_Damage:948883666363383848>",
             "active": true
         },
         "gaslighting_joki": {
@@ -65,6 +77,12 @@
             "title": "Sleeping in VC",
             "value": 1,
             "emoji": "<:stanleySleeper:947094037297504346>",
+            "active": true
+        },
+        "genshin_50_50": {
+            "title": "Losing the 50/50",
+            "value": 1,
+            "emoji": "<:raiden_no:948888388658929675>",
             "active": true
         }
     }
