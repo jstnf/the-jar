@@ -179,4 +179,30 @@ async def _jarleaderboard(
     embed.add_field(name='Total Amount', value=f'**{format_currency(total)}**', inline=False)
     await ctx.respond(embed=embed)
 
+@bot.slash_command(name='jarrules', guild_ids=[GUILD_ID, '947088843637661696'], description='List the rules from The Jar.')
+async def _jarrules(
+    ctx: discord.ApplicationContext
+):
+    rules_content = ['', '', '', '']
+    for reason in data['reasons']:
+        entry = data['reason'][reason]
+        entry_value = float(entry['value'])
+        category = 0
+        if entry_value == 0.25:
+            category = 1
+        elif entry_value == 0.5:
+            category = 2
+        elif entry_value == 1:
+            category = 3
+
+        rules_content[category] += f"{entry['emoji']} {entry['title']}\n"
+
+    embed=Embed(title='The Jar Rules', description='Below are the rules of The Jar and their values.', colour=Colour.brand_red())
+    embed.set_thumbnail(url='https://raw.githubusercontent.com/jstnf/the-jar/main/assets/pikafacepalm.png')
+    embed.add_field(name='$0.10', value=f'{rules_content[0]}', inline=False)
+    embed.add_field(name='$0.25', value=f'{rules_content[1]}', inline=False)
+    embed.add_field(name='$0.50', value=f'{rules_content[2]}', inline=False)
+    embed.add_field(name='$1.00', value=f'{rules_content[3]}', inline=False)
+    await ctx.respond(embed=embed)
+
 bot.run(TOKEN)
