@@ -1,5 +1,5 @@
 {
-    "reasons": [ "sus_speech", "thats_homophobic", "valorant_toxic", "deez_nuts", "bitches_joke", "cupcakke", "valorant_come", "emotional_damage", "gaslighting_joki", "acy_joke", "height_joke", "griffin_burns", "vc_sleeping", "genshin_50_50" ],
+    "reasons": [ "sus_speech", "thats_homophobic", "valorant_toxic", "deez_nuts", "bitches_joke", "cupcakke", "valorant_come", "emotional_damage", "are_you_gaslighting", "gaslighting_joki", "acy_joke", "height_joke", "griffin_burns", "vc_sleeping", "genshin_50_50", "dice_roll" ],
     "reason": {
         "sus_speech": {
             "title": "Entry in #sus-speech",
@@ -49,6 +49,12 @@
             "emoji": "<a:Emotional_Damage:948883666363383848>",
             "active": true
         },
+        "are_you_gaslighting": {
+            "title": "\"Are you gaslighting me?\"",
+            "value": 0.25,
+            "emoji": "<:TheLeanMonster:948893664057384960>",
+            "active": true
+        },
         "gaslighting_joki": {
             "title": "Gaslighting Joki",
             "value": 0.5,
@@ -83,6 +89,12 @@
             "title": "Losing the 50/50",
             "value": 1,
             "emoji": "<:raiden_no:948888388658929675>",
+            "active": true
+        },
+        "dice_roll": {
+            "title": "Roll NAT 1",
+            "value": 1,
+            "emoji": "<a:Obama_Hedron:948893431885885461>",
             "active": true
         }
     }
