@@ -112,9 +112,10 @@ def get_money_user_total(violations, victim: discord.Member):
     return total
 
 class LeaderboardEntry(object):
-    def __init__(self, id: str, amount: float):
+    def __init__(self, id: str, amount: float, num_violations: int):
         self.id = id
         self.amount = amount
+        self.num_violations = num_violations
     def __eq__(self, other):
         return self.amount == other.amount
     def __ne__(self, other):
@@ -135,13 +136,13 @@ def get_leaderboard(violations):
         for ent in entries:
             if ent.id == v.victim_id:
                 ent.amount += data['reason'][v.reason_id]['value']
+                ent.num_violations = ent.num_violations + 1
                 found = True
                 break
         if not found:
-            entries.append(LeaderboardEntry(v.victim_id, float(data['reason'][v.reason_id]['value'])))
+            entries.append(LeaderboardEntry(v.victim_id, float(data['reason'][v.reason_id]['value']), 1))
     entries.sort()
     return entries
-
 
 @bot.slash_command(name='getthejar', guild_ids=[GUILD_ID, '947088843637661696'], description='I can\'t believe you\'ve done this...')
 async def _getthejar(
@@ -169,7 +170,7 @@ async def _jarleaderboard(
         percentage = '%.1f' % (e.amount / total * 100)
         member = await ctx.guild.fetch_member(int(e.id))
         users_content += f'**{count}.** {member.mention if member else None}\n'
-        amounts_content += f'**{format_currency(e.amount)}** ({percentage}%)\n'
+        amounts_content += f'**{format_currency(e.amount)}** ({percentage}%) `{e.num_violations}x`\n'
         count += 1
 
     embed=Embed(title='The Jar Leaderboard', description='Here\'s the top contributors to The Jar! <:TheJar:947107045188976681>', colour=Colour.brand_red())
