@@ -70,9 +70,9 @@ class ReportButton(Button):
         embed.set_thumbnail(url='https://raw.githubusercontent.com/jstnf/the-jar/main/assets/pikafacepalm.png')
         embed.add_field(name='THE ACCUSED', value=self.victim.mention, inline=False)
         embed.add_field(name='THE CRIME', value=f'{self.emoji} **{self.title}**', inline=True)
-        embed.add_field(name='Added Amount', value=f'{format_currency(self.value)}', inline=True)
-        embed.add_field(name=f'{self.victim.name}\'s Total', value=f'{format_currency(user_total)} `({percentage}% of total)`', inline=True)
-        embed.add_field(name='Jar Total', value=f'{format_currency(total)} <:TheJar:947107045188976681>', inline=True)
+        embed.add_field(name='Added Amount', value=f'**{format_currency(self.value)}**', inline=True)
+        embed.add_field(name=f'{self.victim.name}\'s Total', value=f'**{format_currency(user_total)}** ({percentage}% of total) `{len(get_user_violations(self.victim))}x`', inline=True)
+        embed.add_field(name='Jar Total', value=f'**{format_currency(total)}** <:TheJar:947107045188976681>', inline=True)
 
         await interaction.response.edit_message(embed=embed, view=None)
 
@@ -97,6 +97,14 @@ def get_violations_list():
                 continue
             violations.append(Violation(parts[0], parts[1], parts[2][:-1]))
     return violations
+
+def get_user_violations(victim: discord.Member):
+    user_violations = []
+    violations = get_violations_list()
+    for v in violations:
+        if str(victim.id) == v.victim_id:
+            user_violations.append(v)
+    return user_violations
 
 def get_money_total(violations):
     total = 0.0
