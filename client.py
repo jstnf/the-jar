@@ -65,7 +65,9 @@ class ReportButton(Button):
         user_total = get_money_user_total(violations, self.victim)
         percentage = '%.1f' % (user_total / total * 100)
 
-        embed = Embed(title='Thanks!', description='The Jar grows by the day.', colour=Colour.brand_red())
+        report_final_desc = 'nice.' if (total >= 69 and total < 70) else 'The Jar grows by the day.'
+
+        embed = Embed(title='Thanks!', description=f'{report_final_desc}', colour=Colour.brand_red())
         embed.set_author(name=self.author.name, icon_url=self.author.avatar.url)
         embed.set_thumbnail(url='https://raw.githubusercontent.com/jstnf/the-jar/main/assets/pikafacepalm.png')
         embed.add_field(name='THE ACCUSED', value=self.victim.mention, inline=False)
