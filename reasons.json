@@ -1,5 +1,25 @@
 {
-    "reasons": [ "sus_speech", "thats_homophobic", "valorant_toxic", "deez_nuts", "bitches_joke", "cupcakke", "valorant_come", "emotional_damage", "are_you_gaslighting", "gaslighting_joki", "acy_joke", "height_joke", "griffin_burns", "vc_sleeping", "genshin_50_50", "dice_roll" ],
+    "reasons": [ 
+        "sus_speech", 
+        "thats_homophobic", 
+        "valorant_toxic", 
+        "poggers", 
+        "deez_nuts", 
+        "bitches_joke", 
+        "cupcakke", 
+        "valorant_come", 
+        "emotional_damage", 
+        "are_you_gaslighting", 
+        "chicken_coop", 
+        "youre_done", 
+        "gaslighting_joki", 
+        "acy_joke", 
+        "height_joke", 
+        "griffin_burns", 
+        "vc_sleeping", 
+        "genshin_50_50", 
+        "dice_roll" ],
+    
     "reason": {
         "sus_speech": {
             "title": "Entry in #sus-speech",
@@ -17,6 +37,12 @@
             "title": "Toxic in Val (1/game)",
             "value": 0.1,
             "emoji": "<a:Peepo_toxic:948886225916407839>",
+            "active": true
+        },
+        "poggers": {
+            "title": "poggers (pog, etc)",
+            "value": 0.1,
+            "emoji": "<:Pogging:949978721358606356>",
             "active": true
         },
         "deez_nuts": {
@@ -53,6 +79,18 @@
             "title": "\"Are you gaslighting me?\"",
             "value": 0.25,
             "emoji": "<:TheLeanMonster:948893664057384960>",
+            "active": true
+        },
+        "chicken_coop": {
+            "title": "CHICKEN FUCKING COOP",
+            "value": 0.25,
+            "emoji": "<:cluckcluck:949978791176966214>",
+            "active": true
+        },
+        "youre_done": {
+            "title": "\"You're done\"",
+            "value": 0.25,
+            "emoji": "<:blobUnamused:949979160711925760>",
             "active": true
         },
         "gaslighting_joki": {
