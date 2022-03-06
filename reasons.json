@@ -18,7 +18,8 @@
         "griffin_burns", 
         "vc_sleeping", 
         "genshin_50_50", 
-        "dice_roll" ],
+        "dice_roll",
+        "just_because" ],
     
     "reason": {
         "sus_speech": {
@@ -133,6 +134,12 @@
             "title": "Roll NAT 1",
             "value": 1,
             "emoji": "<a:Obama_Hedron:948893431885885461>",
+            "active": true
+        },
+        "just_because": {
+            "title": "THE COUNCIL HAS SPOKEN",
+            "value": 1,
+            "emoji": "<:this:949989772510777465>",
             "active": true
         }
     }
