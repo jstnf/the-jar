@@ -7,6 +7,8 @@ import discord
 from discord import Colour, Embed
 from discord.commands import Option
 from discord.ui import Button, View
+import matplotlib.pyplot as plt
+import numpy as np
 
 # .env
 load_dotenv()
@@ -186,19 +188,31 @@ async def _jarleaderboard(
     amounts_content = ''
     entries = get_leaderboard(violations)
     count = 1
+    nums = []
+    pie_labels = []
     for e in entries[::-1]:
         percentage = '%.1f' % (e.amount / total * 100)
         member = await ctx.guild.fetch_member(int(e.id))
         users_content += f'**{count}.** {member.mention if member else None}\n'
         amounts_content += f'**{format_currency(e.amount)}** ({percentage}%) `{e.num_violations}x`\n'
+        nums.append(e.amount)
+        pie_labels.append(f'{member.name}')
         count += 1
 
+    y = np.array(nums)
+
+    plt.figure().set_facecolor('#36393E')
+    plt.pie(y, labels=pie_labels, startangle=90, textprops={'color': 'white'})
+    plt.savefig('graph.png')
+
+    img_file = discord.File('graph.png')
     embed=Embed(title='The Jar Leaderboard', description='Here\'s the top contributors to The Jar! <:TheJar:947107045188976681>', colour=Colour.brand_red())
     embed.set_thumbnail(url='https://raw.githubusercontent.com/jstnf/the-jar/main/assets/pikafacepalm.png')
     embed.add_field(name='Rankings', value=users_content, inline=True)
     embed.add_field(name='Amount', value=amounts_content, inline=True)
     embed.add_field(name='Total Amount', value=f'**{format_currency(total)}**', inline=False)
-    await ctx.respond(embed=embed)
+    embed.set_image(url='attachment://graph.png')
+    await ctx.respond(file=img_file, embed=embed)
 
 @bot.slash_command(name='jarrules', guild_ids=[GUILD_ID, '947088843637661696'], description='List the rules from The Jar.')
 async def _jarrules(
