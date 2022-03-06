@@ -13,10 +13,21 @@ load_dotenv()
 TOKEN = os.getenv('BOT_TOKEN')
 GUILD_ID = os.getenv('GUILD_ID')
 
+# Allow reason changes to be modified globally
+class DataHolder:
+    def __init__(self, data):
+        self.data = data
+
 # reasons.json
 f = open('reasons.json')
-data = json.load(f)
+data_holder = DataHolder(json.load(f))
 f.close()
+
+# Reloading reasons
+def load_reasons():
+    f = open('reasons.json')
+    data_holder.data = json.load(f)
+    f.close()
 
 bot = discord.Bot()
 
@@ -30,8 +41,8 @@ def format_currency(value: float):
 class ReportView(View):
     def __init__(self, author: discord.Member, victim: discord.Member):
         super().__init__()
-        for reason in data['reasons']:
-            entry = data['reason'][reason]
+        for reason in data_holder.data['reasons']:
+            entry = data_holder.data['reason'][reason]
             if (entry['active']): # Only import active jar reasons
                 self.add_item(ReportButton(author, reason, entry['title'], entry['value'], entry['emoji'], victim))
 
@@ -110,14 +121,14 @@ def get_user_violations(violations, victim: discord.Member):
 def get_money_total(violations):
     total = 0.0
     for v in violations:
-        total += float(data['reason'][v.reason_id]['value'])
+        total += float(data_holder.data['reason'][v.reason_id]['value'])
     return total
 
 def get_money_user_total(violations, victim: discord.Member):
     total = 0.0
     for v in violations:
         if v.victim_id == f'{victim.id}':
-            total += float(data['reason'][v.reason_id]['value'])
+            total += float(data_holder.data['reason'][v.reason_id]['value'])
     return total
 
 class LeaderboardEntry(object):
@@ -144,12 +155,12 @@ def get_leaderboard(violations):
         found = False
         for ent in entries:
             if ent.id == v.victim_id:
-                ent.amount += data['reason'][v.reason_id]['value']
+                ent.amount += data_holder.data['reason'][v.reason_id]['value']
                 ent.num_violations = ent.num_violations + 1
                 found = True
                 break
         if not found:
-            entries.append(LeaderboardEntry(v.victim_id, float(data['reason'][v.reason_id]['value']), 1))
+            entries.append(LeaderboardEntry(v.victim_id, float(data_holder.data['reason'][v.reason_id]['value']), 1))
     entries.sort()
     return entries
 
@@ -194,8 +205,8 @@ async def _jarrules(
     ctx: discord.ApplicationContext
 ):
     rules_content = ['', '', '', '']
-    for reason in data['reasons']:
-        entry = data['reason'][reason]
+    for reason in data_holder.data['reasons']:
+        entry = data_holder.data['reason'][reason]
         entry_value = float(entry['value'])
         category = 0
         if entry_value == 0.25:
@@ -214,5 +225,12 @@ async def _jarrules(
     embed.add_field(name='$0.50', value=f'{rules_content[2]}', inline=False)
     embed.add_field(name='$1.00', value=f'{rules_content[3]}', inline=False)
     await ctx.respond(embed=embed)
+
+@bot.slash_command(name='jarreload', guild_ids=[GUILD_ID, '947088843637661696'], description='Reload the rules from The Jar.')
+async def _jarreload(
+    ctx: discord.ApplicationContext
+):
+    load_reasons()
+    await ctx.respond(f"Loaded {len(data_holder.data['reasons'])} rules.")
 
 bot.run(TOKEN)
