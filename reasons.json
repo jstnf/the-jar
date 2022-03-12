@@ -4,6 +4,7 @@
         "thats_homophobic", 
         "valorant_toxic", 
         "poggers", 
+        "ass_itch",
         "deez_nuts", 
         "bitches_joke", 
         "cupcakke", 
@@ -16,6 +17,7 @@
         "acy_joke", 
         "height_joke", 
         "griffin_burns", 
+        "aron_buddy", 
         "vc_sleeping", 
         "genshin_50_50", 
         "dice_roll",
@@ -44,6 +46,12 @@
             "title": "poggers (pog, etc)",
             "value": 0.1,
             "emoji": "<:Pogging:949978721358606356>",
+            "active": true
+        },
+        "ass_itch": {
+            "title": "\"You make my ass itch.\"",
+            "value": 0.25,
+            "emoji": "<:peach_embarrassed:951040911083700254>",
             "active": true
         },
         "deez_nuts": {
@@ -116,6 +124,12 @@
             "title": "Getting Griffin Burn'd",
             "value": 0.5,
             "emoji": "<:childedisgusted:947093745562705930>",
+            "active": true
+        },
+        "aron_buddy": {
+            "title": "aron... buddy...",
+            "value": 0.5,
+            "emoji": "<:dahyundisappoint:950311894076518420>",
             "active": true
         },
         "vc_sleeping": {
