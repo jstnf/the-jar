@@ -192,11 +192,15 @@ async def _jarleaderboard(
     pie_labels = []
     for e in entries[::-1]:
         percentage = '%.1f' % (e.amount / total * 100)
-        member = await ctx.guild.fetch_member(int(e.id))
-        users_content += f'**{count}.** {member.mention if member else None}\n'
+        try:
+            member = await ctx.guild.fetch_member(int(e.id))
+            users_content += f'**{count}.** {member.mention}\n'
+            pie_labels.append(f'{member.name}')
+        except:
+            users_content += f'**{count}.** <@{e.id}>\n'
+            pie_labels.append('???')
         amounts_content += f'**{format_currency(e.amount)}** ({percentage}%) `{e.num_violations}x`\n'
         nums.append(e.amount)
-        pie_labels.append(f'{member.name}')
         count += 1
 
     y = np.array(nums)
