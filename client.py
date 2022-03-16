@@ -251,4 +251,20 @@ async def _jarreload(
     load_reasons()
     await ctx.respond(f"Loaded {len(data_holder.data['reasons'])} rules.")
 
+@bot.slash_command(name='jarstats', guild_ids=[GUILD_ID, '947088843637661696'], description='View some neat stats for The Jar.')
+async def _jarstats(
+    ctx: discord.ApplicationContext
+):
+    violations = get_violations_list()
+    total_time = 1
+    if (len(violations) > 0):
+        total_time = round(time.time() * 1000) - float(violations[0].time)
+    total_amount = get_money_total(violations)
+    days = total_time / 1000 / 60 / 60 / 24 # Conversion from milliseconds to days
+    
+    embed=Embed(title='The Jar Stats', description='<a:Emotional_Damage:948883666363383848>', colour=Colour.brand_red())
+    embed.set_thumbnail(url='https://raw.githubusercontent.com/jstnf/the-jar/main/assets/pikafacepalm.png')
+    embed.add_field(name='Daily Average', value=f'{format_currency(total_amount / days)}', inline=False)
+    await ctx.respond(embed=embed)
+
 bot.run(TOKEN)
