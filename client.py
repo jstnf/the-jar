@@ -268,11 +268,11 @@ async def _jarstats(
     embed.add_field(name='Daily Average', value=f'{format_currency(total_amount / days)}', inline=False)
     await ctx.respond(embed=embed)
 
-@bot.slash_command(name='lr', guild_ids=[GUILD_ID, '947088843637661696'], description='Charge for the lightning round!'),
-async def _lr(
+@bot.slash_command(name='charge', guild_ids=[GUILD_ID, '947088843637661696'], description='Summon the jar!')
+async def _charge(
     ctx: discord.ApplicationContext,
     victim: Option(discord.Member, "Who did the thing?"),
-    charge: Option(str, "ID for the charge (optional)")
+    charge: Option(str, "ID for the charge (optional)", required=False, default='')
 ):
     # TODO!
     await ctx.respond(f'hello!')
