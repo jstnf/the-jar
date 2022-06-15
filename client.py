@@ -1,4 +1,5 @@
 # client.py
+from email import message
 import time
 import os
 from dotenv import load_dotenv
@@ -266,5 +267,14 @@ async def _jarstats(
     embed.set_thumbnail(url='https://raw.githubusercontent.com/jstnf/the-jar/main/assets/pikafacepalm.png')
     embed.add_field(name='Daily Average', value=f'{format_currency(total_amount / days)}', inline=False)
     await ctx.respond(embed=embed)
+
+@bot.slash_command(name='lr', guild_ids=[GUILD_ID, '947088843637661696'], description='Charge for the lightning round!'),
+async def _lr(
+    ctx: discord.ApplicationContext,
+    victim: Option(discord.Member, "Who did the thing?"),
+    charge: Option(str, "ID for the charge (optional)")
+):
+    # TODO!
+    await ctx.respond(f'hello!')
 
 bot.run(TOKEN)

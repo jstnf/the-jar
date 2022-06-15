@@ -21,140 +21,305 @@
         "vc_sleeping", 
         "genshin_50_50", 
         "dice_roll",
-        "just_because" ],
+        "just_because"
+    ],
+
+    "lightning_round": [
+        "lr_bark",
+        "lr_meow",
+        "lr_fnaf",
+        "lr_get_shit_on",
+        "lr_racial_slurs",
+        "lr_bois_plan_simple",
+        "lr_youre_not_that_guy",
+        "lr_balls_in_yo_jaws",
+        "lr_raiden_shogun",
+        "lr_sheesh",
+        "lr_how_many_times",
+        "lr_tft_lose",
+        "lr_homophobia"
+    ],
     
     "reason": {
         "sus_speech": {
             "title": "Entry in #sus-speech",
             "value": 0.1,
             "emoji": "<:Sus:947096324808007730>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["susspeech"]
         },
         "thats_homophobic": {
             "title": "\"You're/That's homophobic\"",
             "value": 0.1,
             "emoji": "<:poc_lgbt_middle_finger:947089634607919145>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["thatshomophobic", "youre_homophobic", "yourehomophobic"]
         },
         "valorant_toxic": {
             "title": "Toxic in Val (1/game)",
             "value": 0.1,
             "emoji": "<a:Peepo_toxic:948886225916407839>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["valoranttoxic", "val_toxic", "valtoxic"]
         },
         "poggers": {
             "title": "poggers (pog, etc)",
             "value": 0.1,
             "emoji": "<:Pogging:949978721358606356>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["pog"]
         },
         "ass_itch": {
             "title": "\"You make my ass itch.\"",
             "value": 0.25,
             "emoji": "<:peach_embarrassed:951040911083700254>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["assitch", "you_make_my_ass_itch", "youmakemyassitch"]
         },
         "deez_nuts": {
             "title": "\"Deez nuts\" joke",
             "value": 0.25,
             "emoji": "<:thonk:947094204511842324>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["deeznuts"]
         },
         "bitches_joke": {
             "title": "Any \"bitches\" joke",
             "value": 0.25,
             "emoji": "<a:Kokomi_FuckYou:947092817308708894>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["bitchesjoke", "bitches"]
         },
         "cupcakke": {
             "title": "Cupcakke Remix",
             "value": 0.25,
             "emoji": "<:thinksmirk:947095789828735107>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["cupcake"]
         },
         "valorant_come": {
             "title": "Sova/Viper \"Come\"",
             "value": 0.25,
             "emoji": "<:Sova_Pokerface:947089043399790592>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["valorantcome", "val_come", "valcome"]
         },
         "emotional_damage": {
             "title": "EMOTIONAL DAMAGE",
             "value": 0.25,
             "emoji": "<a:Emotional_Damage:948883666363383848>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["emotionaldamage"]
         },
         "are_you_gaslighting": {
             "title": "\"Are you gaslighting me?\"",
             "value": 0.25,
             "emoji": "<:TheLeanMonster:948893664057384960>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["areyougaslighting"]
         },
         "chicken_coop": {
             "title": "CHICKEN FUCKING COOP",
             "value": 0.25,
             "emoji": "<:cluckcluck:949978791176966214>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["chickencoop"]
         },
         "youre_done": {
             "title": "\"You're done\"",
             "value": 0.25,
             "emoji": "<:blobUnamused:949979160711925760>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["youredone"]
         },
         "gaslighting_joki": {
             "title": "Gaslighting Joki",
             "value": 0.5,
             "emoji": "<a:jokipat:947091916498026546>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["gaslightingjoki", "poorjoki"]
         },
         "acy_joke": {
             "title": "Acy joke",
             "value": 0.5,
             "emoji": "<:pepeNoSign:947094523870343198>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["acyjoke", "acy"]
         },
         "height_joke": {
             "title": "Rvk height joke",
             "value": 0.5,
             "emoji": "<a:KEKWLaugh:947093507682742272>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["heightjoke", "rvk_height_joke", "rvkheightjoke", "rvkjoke"]
         },
         "griffin_burns": {
             "title": "Getting Griffin Burn'd",
             "value": 0.5,
             "emoji": "<:childedisgusted:947093745562705930>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["griffinburns"]
         },
         "aron_buddy": {
             "title": "aron... buddy...",
             "value": 0.5,
             "emoji": "<:dahyundisappoint:950311894076518420>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["aronbuddy"]
         },
         "vc_sleeping": {
             "title": "Sleeping in VC",
             "value": 1,
             "emoji": "<:stanleySleeper:947094037297504346>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["vcsleeping"]
         },
         "genshin_50_50": {
             "title": "Losing the 50/50",
             "value": 1,
             "emoji": "<:raiden_no:948888388658929675>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["genshin5050", "5050"]
         },
         "dice_roll": {
             "title": "Roll NAT 1",
             "value": 1,
             "emoji": "<a:Obama_Hedron:948893431885885461>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["diceroll", "roll_nat_1", "rollnat1"]
         },
         "just_because": {
             "title": "THE COUNCIL HAS SPOKEN",
             "value": 1,
             "emoji": "<:this:949989772510777465>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["justbecause", "council"]
+        },
+        "lr_bark": {
+            "title": "BARK",
+            "value": 0.05,
+            "emoji": "",
+            "active": true,
+            "lightning_round": true,
+            "alternative_ids": ["bark"]
+        },
+        "lr_meow": {
+            "title": "MEOW",
+            "value": 0.05,
+            "emoji": "",
+            "active": true,
+            "lightning_round": true,
+            "alternative_ids": ["meow", "mow"]
+        },
+        "lr_fnaf": {
+            "title": "FNAF (music, lore, etc.)",
+            "value": 0.05,
+            "emoji": "",
+            "active": true,
+            "lightning_round": true,
+            "alternative_ids": ["fnaf"]
+        },
+        "lr_get_shit_on": {
+            "title": "GET SHIT ON!",
+            "value": 0.05,
+            "emoji": "",
+            "active": true,
+            "lightning_round": true,
+            "alternative_ids": ["get_shit_on", "getshiton"]
+        },
+        "lr_racial_slurs": {
+            "title": "Racial Slurs",
+            "value": 0.05,
+            "emoji": "",
+            "active": true,
+            "lightning_round": true,
+            "alternative_ids": ["racial_slurs", "racialslurs"]
+        },
+        "lr_bois_plan_simple": {
+            "title": "BOIS/the plan is simple",
+            "value": 0.05,
+            "emoji": "",
+            "active": true,
+            "lightning_round": true,
+            "alternative_ids": ["bois_plan_simple", "boisplansimple", "bois", "the_plan_is_simple", "theplanissimple"]
+        },
+        "lr_youre_not_that_guy": {
+            "title": "You're not that guy",
+            "value": 0.05,
+            "emoji": "",
+            "active": true,
+            "lightning_round": true,
+            "alternative_ids": ["youre_not_that_guy", "yourenotthatguy"]
+        },
+        "lr_balls_in_yo_jaws": {
+            "title": "BALLS IN YO JAWS",
+            "value": 0.05,
+            "emoji": "",
+            "active": true,
+            "lightning_round": true,
+            "alternative_ids": ["balls_in_yo_jaws", "ballsinyojaws"]
+        },
+        "lr_raiden_shogun": {
+            "title": "Raiden Shogun (inlaid statue)",
+            "value": 0.05,
+            "emoji": "",
+            "active": true,
+            "lightning_round": true,
+            "alternative_ids": ["raiden_shogun", "raidenshogun"]
+        },
+        "lr_sheesh": {
+            "title": "sheeeesh",
+            "value": 0.05,
+            "emoji": "",
+            "active": true,
+            "lightning_round": true,
+            "alternative_ids": ["sheesh"]
+        },
+        "lr_how_many_times": {
+            "title": "how many times do we have to teach you this lesson old man?!",
+            "value": 0.05,
+            "emoji": "",
+            "active": true,
+            "lightning_round": true,
+            "alternative_ids": ["how_many_times", "howmanytimes"]
+        },
+        "lr_tft_lose": {
+            "title": "Lose in TFT (5th-8th)",
+            "value": 0.05,
+            "emoji": "",
+            "active": true,
+            "lightning_round": true,
+            "alternative_ids": ["tft_lose", "tftlose"]
+        },
+        "lr_homophobia": {
+            "title": "Homophobia (slurs)",
+            "value": 0.05,
+            "emoji": "",
+            "active": true,
+            "lightning_round": true,
+            "alternative_ids": ["homophobia", "homophobia_slurs", "homophobiaslurs"]
         }
     }
 }
