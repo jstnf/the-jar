@@ -4,11 +4,13 @@
         "thats_homophobic", 
         "valorant_toxic", 
         "poggers", 
+        "whiff", 
         "ass_itch",
         "deez_nuts", 
         "bitches_joke", 
         "cupcakke", 
         "valorant_come", 
+        "nice_cock",
         "emotional_damage", 
         "are_you_gaslighting", 
         "chicken_coop", 
@@ -18,7 +20,9 @@
         "height_joke", 
         "griffin_burns", 
         "aron_buddy", 
-        "vc_sleeping", 
+        "your_mom", 
+        "vc_sleeping",
+        "steal_penta", 
         "genshin_50_50", 
         "dice_roll",
         "just_because" ],
@@ -48,6 +52,12 @@
             "emoji": "<:Pogging:949978721358606356>",
             "active": true
         },
+        "whiff": {
+            "title": "Whiffing in val",
+            "value": 0.1,
+            "emoji": "<:pardon:976415398872367114>",
+            "active": true
+        },
         "ass_itch": {
             "title": "\"You make my ass itch.\"",
             "value": 0.25,
@@ -70,12 +80,18 @@
             "title": "Cupcakke Remix",
             "value": 0.25,
             "emoji": "<:thinksmirk:947095789828735107>",
-            "active": true
+            "active": false
         },
         "valorant_come": {
             "title": "Sova/Viper \"Come\"",
             "value": 0.25,
             "emoji": "<:Sova_Pokerface:947089043399790592>",
+            "active": false
+        },
+        "nice_cock": {
+            "title": "Nice Cock!",
+            "value": 0.25,
+            "emoji": "<:ding:971672397499494410>",
             "active": true
         },
         "emotional_damage": {
@@ -132,10 +148,22 @@
             "emoji": "<:dahyundisappoint:950311894076518420>",
             "active": true
         },
+        "your_mom": {
+            "title": "\"your mom\"",
+            "value": 0.5,
+            "emoji": "<:placeholder:976417583353962496>",
+            "active": true
+        },
         "vc_sleeping": {
             "title": "Sleeping in VC",
             "value": 1,
             "emoji": "<:stanleySleeper:947094037297504346>",
+            "active": true
+        },
+        "steal_penta": {
+            "title": "Stealing Ace/Penta",
+            "value": 1,
+            "emoji": "<:3ron:968791087156170752>",
             "active": true
         },
         "genshin_50_50": {
