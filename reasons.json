@@ -81,7 +81,9 @@
             "title": "Whiffing in val",
             "value": 0.1,
             "emoji": "<:pardon:976415398872367114>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": []
         },
         "ass_itch": {
             "title": "\"You make my ass itch.\"",
@@ -111,31 +113,25 @@
             "title": "Cupcakke Remix",
             "value": 0.25,
             "emoji": "<:thinksmirk:947095789828735107>",
-<<<<<<< HEAD
-            "active": true,
+            "active": false,
             "lightning_round": false,
             "alternative_ids": ["cupcake"]
-=======
-            "active": false
->>>>>>> 1e8cd60882a4aae4c968611183f9a67e79cf3aa8
         },
         "valorant_come": {
             "title": "Sova/Viper \"Come\"",
             "value": 0.25,
             "emoji": "<:Sova_Pokerface:947089043399790592>",
-<<<<<<< HEAD
-            "active": true,
+            "active": false,
             "lightning_round": false,
             "alternative_ids": ["valorantcome", "val_come", "valcome"]
-=======
-            "active": false
         },
         "nice_cock": {
             "title": "Nice Cock!",
             "value": 0.25,
             "emoji": "<:ding:971672397499494410>",
-            "active": true
->>>>>>> 1e8cd60882a4aae4c968611183f9a67e79cf3aa8
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["nicecock"]
         },
         "emotional_damage": {
             "title": "EMOTIONAL DAMAGE",
@@ -213,7 +209,9 @@
             "title": "\"your mom\"",
             "value": 0.5,
             "emoji": "<:placeholder:976417583353962496>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["yourmom"]
         },
         "vc_sleeping": {
             "title": "Sleeping in VC",
@@ -227,7 +225,9 @@
             "title": "Stealing Ace/Penta",
             "value": 1,
             "emoji": "<:3ron:968791087156170752>",
-            "active": true
+            "active": true,
+            "lightning_round": false,
+            "alternative_ids": ["stealpenta", "steal_ace", "stealace"]
         },
         "genshin_50_50": {
             "title": "Losing the 50/50",
