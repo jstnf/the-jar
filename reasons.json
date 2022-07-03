@@ -41,7 +41,10 @@
         "lr_sheesh",
         "lr_how_many_times",
         "lr_tft_lose",
-        "lr_homophobia"
+        "lr_homophobia",
+        "lr_naur",
+        "lr_comp_game_lose",
+        "lr_so_there_i_was"
     ],
     
     "reason": {
@@ -232,7 +235,7 @@
         "genshin_50_50": {
             "title": "Losing the 50/50",
             "value": 1,
-            "emoji": "<:raiden_no:948888388658929675>",
+            "emoji": "<:primogem:990164233004154900>",
             "active": true,
             "lightning_round": false,
             "alternative_ids": ["genshin5050", "5050"]
@@ -256,7 +259,7 @@
         "lr_bark": {
             "title": "BARK",
             "value": 0.05,
-            "emoji": "",
+            "emoji": "<a:DogBark:990149239260717086>",
             "active": true,
             "lightning_round": true,
             "alternative_ids": ["bark"]
@@ -264,7 +267,7 @@
         "lr_meow": {
             "title": "MEOW",
             "value": 0.05,
-            "emoji": "",
+            "emoji": "<a:catJAM:990150805795508245>",
             "active": true,
             "lightning_round": true,
             "alternative_ids": ["meow", "mow"]
@@ -272,7 +275,7 @@
         "lr_fnaf": {
             "title": "FNAF (music, lore, etc.)",
             "value": 0.05,
-            "emoji": "",
+            "emoji": "<:fnaf:990150973706104842>",
             "active": true,
             "lightning_round": true,
             "alternative_ids": ["fnaf"]
@@ -280,7 +283,7 @@
         "lr_get_shit_on": {
             "title": "GET SHIT ON!",
             "value": 0.05,
-            "emoji": "",
+            "emoji": "<a:quickscope:990151469435093022>",
             "active": true,
             "lightning_round": true,
             "alternative_ids": ["get_shit_on", "getshiton"]
@@ -288,7 +291,7 @@
         "lr_racial_slurs": {
             "title": "Racial Slurs",
             "value": 0.05,
-            "emoji": "",
+            "emoji": "<:bean:990155945994747944>",
             "active": true,
             "lightning_round": true,
             "alternative_ids": ["racial_slurs", "racialslurs"]
@@ -296,7 +299,7 @@
         "lr_bois_plan_simple": {
             "title": "BOIS/the plan is simple",
             "value": 0.05,
-            "emoji": "",
+            "emoji": "<:BOIS:990156524968083474>",
             "active": true,
             "lightning_round": true,
             "alternative_ids": ["bois_plan_simple", "boisplansimple", "bois", "the_plan_is_simple", "theplanissimple"]
@@ -304,7 +307,7 @@
         "lr_youre_not_that_guy": {
             "title": "You're not that guy",
             "value": 0.05,
-            "emoji": "",
+            "emoji": "<a:nope:990157407835529277>",
             "active": true,
             "lightning_round": true,
             "alternative_ids": ["youre_not_that_guy", "yourenotthatguy"]
@@ -312,7 +315,7 @@
         "lr_balls_in_yo_jaws": {
             "title": "BALLS IN YO JAWS",
             "value": 0.05,
-            "emoji": "",
+            "emoji": "<a:ballsinyojaws:990160036502339636>",
             "active": true,
             "lightning_round": true,
             "alternative_ids": ["balls_in_yo_jaws", "ballsinyojaws"]
@@ -320,7 +323,7 @@
         "lr_raiden_shogun": {
             "title": "Raiden Shogun (inlaid statue)",
             "value": 0.05,
-            "emoji": "",
+            "emoji": "<:raidenarrest:990160531304374273>",
             "active": true,
             "lightning_round": true,
             "alternative_ids": ["raiden_shogun", "raidenshogun"]
@@ -328,7 +331,7 @@
         "lr_sheesh": {
             "title": "sheeeesh",
             "value": 0.05,
-            "emoji": "",
+            "emoji": "<:sheeeeeeeeesh:990160742244286524>",
             "active": true,
             "lightning_round": true,
             "alternative_ids": ["sheesh"]
@@ -336,7 +339,7 @@
         "lr_how_many_times": {
             "title": "how many times do we have to teach you this lesson old man?!",
             "value": 0.05,
-            "emoji": "",
+            "emoji": "<a:howmanytimes:990161325281931286>",
             "active": true,
             "lightning_round": true,
             "alternative_ids": ["how_many_times", "howmanytimes"]
@@ -344,7 +347,7 @@
         "lr_tft_lose": {
             "title": "Lose in TFT (5th-8th)",
             "value": 0.05,
-            "emoji": "",
+            "emoji": "<:league_defeat:990162014120841226>",
             "active": true,
             "lightning_round": true,
             "alternative_ids": ["tft_lose", "tftlose"]
@@ -352,10 +355,34 @@
         "lr_homophobia": {
             "title": "Homophobia (slurs)",
             "value": 0.05,
-            "emoji": "",
+            "emoji": "<:hmphdog:990162404157583382>",
             "active": true,
             "lightning_round": true,
             "alternative_ids": ["homophobia", "homophobia_slurs", "homophobiaslurs"]
+        },
+        "lr_naur": {
+            "title": "NAUR",
+            "value": 0.05,
+            "emoji": "<:NAUR:990162597137514496>",
+            "active": true,
+            "lightning_round": true,
+            "alternative_ids": ["naur"]
+        },
+        "lr_comp_game_lose": {
+            "title": "Lose a Comp Game",
+            "value": 0.05,
+            "emoji": "<:valorant_iron:990163775061630986>",
+            "active": true,
+            "lightning_round": true,
+            "alternative_ids": ["comp_game_lose", "compgamelose", "complose", "losecomp"]
+        },
+        "lr_so_there_i_was": {
+            "title": "\"So there I was...\"",
+            "value": 0.05,
+            "emoji": "<:bbqsauce:990163871702589490>",
+            "active": false,
+            "lightning_round": true,
+            "alternative_ids": ["so_there_i_was", "sothereiwas"]
         }
     }
 }

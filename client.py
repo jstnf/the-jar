@@ -14,16 +14,17 @@ import numpy as np
 # .env
 load_dotenv()
 TOKEN = os.getenv('BOT_TOKEN')
-GUILD_ID = os.getenv('GUILD_ID')
+GUILD_IDS = json.loads(os.getenv('GUILD_IDS'))
 
 # Allow reason changes to be modified globally
 class DataHolder:
-    def __init__(self, data):
+    def __init__(self, data, alias):
         self.data = data
+        self.alias = alias
 
 # reasons.json
 f = open('reasons.json')
-data_holder = DataHolder(json.load(f))
+data_holder = DataHolder(json.load(f), {})
 f.close()
 
 # Reloading reasons
@@ -31,6 +32,20 @@ def load_reasons():
     f = open('reasons.json')
     data_holder.data = json.load(f)
     f.close()
+
+    data_holder.alias = {} # Reset alias list
+
+    # Standard reasons
+    for reason in data_holder.data['reasons']:
+        data_holder.alias[reason] = reason
+        for alias in data_holder.data['reason'][reason]:
+            data_holder.alias[alias] = reason
+
+    # Lightning round reasons
+    for reason in data_holder.data['lightning_round']:
+        data_holder.alias[reason] = reason
+        for alias in data_holder.data['reason'][reason]:
+            data_holder.alias[alias] = reason
 
 bot = discord.Bot()
 
@@ -42,15 +57,16 @@ def format_currency(value: float):
     return '${:,.2f}'.format(value)
 
 class ReportView(View):
-    def __init__(self, author: discord.Member, victim: discord.Member):
+    def __init__(self, author: discord.Member, victim: discord.Member, lightning_round: bool, persist: bool):
         super().__init__()
-        for reason in data_holder.data['reasons']:
+        reasons_list = data_holder.data['lightning_round'] if lightning_round else data_holder.data['reasons']
+        for reason in reasons_list:
             entry = data_holder.data['reason'][reason]
             if (entry['active']): # Only import active jar reasons
-                self.add_item(ReportButton(author, reason, entry['title'], entry['value'], entry['emoji'], victim))
+                self.add_item(ReportButton(author, reason, entry['title'], entry['value'], entry['emoji'], victim, lightning_round, persist))
 
 class ReportButton(Button):
-    def __init__(self, author: discord.Member, id: str, title: str, value: float, emoji, victim: discord.Member):
+    def __init__(self, author: discord.Member, id: str, title: str, value: float, emoji, victim: discord.Member, lightning_round: bool, persist: bool):
         super().__init__(label=title, style=self.style(value), emoji=emoji)
         self.author = author
         self.id = id
@@ -58,9 +74,11 @@ class ReportButton(Button):
         self.value = value
         self.emoji = emoji
         self.victim = victim
+        self.lightning_round = lightning_round
+        self.persist = persist
 
     def style(self, value: float):
-        if value == 0.1:
+        if value == 0.1 or value == 0.05:
             return discord.ButtonStyle.secondary
         elif value == 0.25:
             return discord.ButtonStyle.success
@@ -90,7 +108,11 @@ class ReportButton(Button):
         embed.add_field(name=f'{self.victim.name}\'s Total', value=f'**{format_currency(user_total)}** ({percentage}% of total) `{len(get_user_violations(violations, self.victim))}x`', inline=True)
         embed.add_field(name='Jar Total', value=f'**{format_currency(total)}** <:TheJar:947107045188976681>', inline=True)
 
-        await interaction.response.edit_message(embed=embed, view=None)
+        if self.persist:
+            await interaction.response.send_message(embed=embed)
+            await interaction.response.edit_message(content=f'Last Charge Applied: `{self.title}`')
+        else:
+            await interaction.response.edit_message(embed=embed, view=None)
 
 class Violation:
     def __init__(self, time: str, victim_id: str, reason_id: str):
@@ -167,19 +189,33 @@ def get_leaderboard(violations):
     entries.sort()
     return entries
 
-@bot.slash_command(name='getthejar', guild_ids=[GUILD_ID, '947088843637661696'], description='I can\'t believe you\'ve done this...')
+@bot.slash_command(name='getthejar', guild_ids=GUILD_IDS, description='I can\'t believe you\'ve done this...')
 async def _getthejar(
     ctx: discord.ApplicationContext,
-    victim: Option(discord.Member, 'Who did the thing?')
+    victim: Option(discord.Member, 'Who did the thing?'),
+    persistent: Option(bool, 'Whether the charge list should stay.', required=False, default=False)
 ):
-    report_view = ReportView(ctx.author, victim)
+    report_view = ReportView(ctx.author, victim, False, persistent)
     embed = Embed(title='Ok... who did the thing?', description='The Jar has been summoned.', colour=Colour.brand_red())
     embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar.url)
     embed.set_thumbnail(url='https://raw.githubusercontent.com/jstnf/the-jar/main/assets/pikafacepalm.png')
     embed.add_field(name='THE ACCUSED', value=victim.mention)
     await ctx.respond(embed=embed, view=report_view)
 
-@bot.slash_command(name='jarleaderboard', guild_ids=[GUILD_ID, '947088843637661696'], description='View the top contributors to The Jar!')
+@bot.slash_command(name='lightninground', guild_ids=GUILD_IDS, description='I can\'t believe you\'ve done this...')
+async def _lightninground(
+    ctx: discord.ApplicationContext,
+    victim: Option(discord.Member, 'Who did the thing?'),
+    persistent: Option(bool, 'Whether the charge list should stay.', required=False, default=False)
+):
+    report_view = ReportView(ctx.author, victim, True, persistent)
+    embed = Embed(title='Ok... who did the thing?', description='The Jar has been summoned.', colour=Colour.brand_red())
+    embed.set_author(name=ctx.author.name, icon_url=ctx.author.avatar.url)
+    embed.set_thumbnail(url='https://raw.githubusercontent.com/jstnf/the-jar/main/assets/pikafacepalm.png')
+    embed.add_field(name='THE ACCUSED', value=victim.mention)
+    await ctx.respond(embed=embed, view=report_view)
+
+@bot.slash_command(name='jarleaderboard', guild_ids=GUILD_IDS, description='View the top contributors to The Jar!')
 async def _jarleaderboard(
     ctx: discord.ApplicationContext
 ):
@@ -219,7 +255,7 @@ async def _jarleaderboard(
     embed.set_image(url='attachment://graph.png')
     await ctx.respond(file=img_file, embed=embed)
 
-@bot.slash_command(name='jarrules', guild_ids=[GUILD_ID, '947088843637661696'], description='List the rules from The Jar.')
+@bot.slash_command(name='jarrules', guild_ids=GUILD_IDS, description='List the rules from The Jar.')
 async def _jarrules(
     ctx: discord.ApplicationContext
 ):
@@ -245,14 +281,14 @@ async def _jarrules(
     embed.add_field(name='$1.00', value=f'{rules_content[3]}', inline=False)
     await ctx.respond(embed=embed)
 
-@bot.slash_command(name='jarreload', guild_ids=[GUILD_ID, '947088843637661696'], description='Reload the rules from The Jar.')
+@bot.slash_command(name='jarreload', guild_ids=GUILD_IDS, description='Reload the rules from The Jar.')
 async def _jarreload(
     ctx: discord.ApplicationContext
 ):
     load_reasons()
     await ctx.respond(f"Loaded {len(data_holder.data['reasons'])} rules.")
 
-@bot.slash_command(name='jarstats', guild_ids=[GUILD_ID, '947088843637661696'], description='View some neat stats for The Jar.')
+@bot.slash_command(name='jarstats', guild_ids=GUILD_IDS, description='View some neat stats for The Jar.')
 async def _jarstats(
     ctx: discord.ApplicationContext
 ):
@@ -268,11 +304,11 @@ async def _jarstats(
     embed.add_field(name='Daily Average', value=f'{format_currency(total_amount / days)}', inline=False)
     await ctx.respond(embed=embed)
 
-@bot.slash_command(name='charge', guild_ids=[GUILD_ID, '947088843637661696'], description='Summon the jar!')
+@bot.slash_command(name='charge', guild_ids=GUILD_IDS, description='Summon the jar!')
 async def _charge(
     ctx: discord.ApplicationContext,
-    victim: Option(discord.Member, "Who did the thing?"),
-    charge: Option(str, "ID for the charge (optional)", required=False, default='')
+    victim: Option(discord.Member, 'Who did the thing?'),
+    charge: Option(str, 'ID for the charge (optional)', required=False, default='')
 ):
     # TODO!
     await ctx.respond(f'hello!')
